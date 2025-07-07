@@ -1,8 +1,5 @@
 {
-  "count": 6,
-  "next": null,
-  "previous": null,
-  "results": [
+  "games": [
     {
       "id": 3498,
       "name": "Grand Theft Auto V",
@@ -28,7 +25,7 @@
       "background_image": "https://images.unsplash.com/photo-1604918202765-3eb2594e9a03?auto=format&fit=crop&w=800&q=60",
       "rating": 4.67,
       "ratings_count": 6500,
-      "metacritic":42,
+      "metacritic": 42,
       "genres": [
         { "id": 4, "name": "Action" },
         { "id": 3, "name": "Adventure" },
@@ -110,5 +107,12 @@
         { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     }
+  ],
+
+  "genres": [
+    { "id": 2, "name": "Puzzle" },
+    { "id": 3, "name": "Adventure" },
+    { "id": 4, "name": "Action" },
+    { "id": 5, "name": "RPG" }
   ]
 }

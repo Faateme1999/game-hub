@@ -11,12 +11,13 @@ import MockAdapter from "axios-mock-adapter";
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
-  params: { key: "dummy-key" }, 
+  params: { key: "dummy-key" },
 });
 
 if (import.meta.env.MODE === "development") {
   const mock = new MockAdapter(apiClient, { delayResponse: 300 });
-  mock.onGet("/games").reply(200, mockData);
+  mock.onGet("/games").reply(200, { results: mockData.games });
+  mock.onGet("/genres").reply(200, { results: mockData.genres });
 }
 
 export default apiClient;
