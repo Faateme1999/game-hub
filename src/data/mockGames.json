@@ -16,9 +16,9 @@
         { "id": 3, "name": "Adventure" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 1, "name": "Xbox One" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 1, "name": "Xbox One", "slug": "xbox" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     },
     {
@@ -35,9 +35,9 @@
         { "id": 5, "name": "RPG" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 1, "name": "Xbox One" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 1, "name": "Xbox One", "slug": "xbox" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     },
     {
@@ -53,8 +53,8 @@
         { "id": 5, "name": "RPG" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     },
     {
@@ -70,9 +70,9 @@
         { "id": 3, "name": "Adventure" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 1, "name": "Xbox One" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 1, "name": "Xbox One", "slug": "xbox" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     },
     {
@@ -88,9 +88,9 @@
         { "id": 5, "name": "RPG" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 1, "name": "Xbox One" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 1, "name": "Xbox One", "slug": "xbox" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     },
     {
@@ -106,8 +106,8 @@
         { "id": 5, "name": "RPG" }
       ],
       "platforms": [
-        { "platform": { "id": 4, "name": "PC" } },
-        { "platform": { "id": 18, "name": "PlayStation 4" } }
+        { "platform": { "id": 4, "name": "PC", "slug": "pc" } },
+        { "platform": { "id": 18, "name": "PlayStation 4", "slug": "playstation" } }
       ]
     }
   ]
