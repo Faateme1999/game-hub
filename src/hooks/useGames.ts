@@ -14,6 +14,7 @@ import { CanceledError } from "axios";
   background_image:string;
   platforms:{platform:platform}[];
 //   design smell
+ metacritic:number;
 }
 
 interface FetchGamesResponse {
