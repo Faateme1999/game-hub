@@ -11,7 +11,7 @@ import MockAdapter from "axios-mock-adapter";
 
 const apiClient: AxiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
-  params: { key: "dummy-key" }, // بی‌اثر، چون ماک می‌کنیم
+  params: { key: "dummy-key" }, 
 });
 
 if (import.meta.env.MODE === "development") {
