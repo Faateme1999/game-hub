@@ -1,4 +1,11 @@
-import { Button,ButtonGroup,Grid,GridItem,Show,useBreakpointValue,} from "@chakra-ui/react";
+import {
+  Button,
+  ButtonGroup,
+  Grid,
+  GridItem,
+  Show,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -12,7 +19,7 @@ function App() {
         }}
       >
         <GridItem area={"nav"}>
-          <NavBar/>
+          <NavBar />
         </GridItem>
         {showAside && (
           <GridItem area="aside" bg="gold">

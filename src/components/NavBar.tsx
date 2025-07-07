@@ -4,7 +4,7 @@ import logo from "../assets/gaming-remote-controller-victor-illustration-mascot-
 const NavBar = () => {
   return (
     <HStack>
-      <Image src={logo} boxSize="60px"/>
+      <Image src={logo} boxSize="60px" />
       <Text>NavBar</Text>
     </HStack>
   );
