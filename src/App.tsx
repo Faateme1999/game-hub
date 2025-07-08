@@ -19,17 +19,21 @@ function App() {
           base: `"nav" "main"`,
           lg: `"nav nav" "aside main"`, //1024px
         }}
+        templateColumns={{
+          base:'1fr',
+          lg:'200px 1fr',
+        }}
       >
         <GridItem area={"nav"}>
           <NavBar />
         </GridItem>
         {showAside && (
-          <GridItem area="aside">
-            <GenreList/>
+          <GridItem area="aside" paddingX={5}>
+            <GenreList />
           </GridItem>
         )}
         <GridItem area="main">
-          <GameGrid/>
+          <GameGrid />
         </GridItem>
       </Grid>
       {/* <Button colorPalette='blue'>Click me</Button> */}
