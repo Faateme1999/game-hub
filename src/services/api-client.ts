@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import mockData from "../data/mockGames.json";
 import MockAdapter from "axios-mock-adapter";
+import { platform } from "../hooks/useGames";
 
 // export default axios.create({
 //     baseURL:'https://api.rawg.io/api',
@@ -16,8 +17,24 @@ const apiClient: AxiosInstance = axios.create({
 
 if (import.meta.env.MODE === "development") {
   const mock = new MockAdapter(apiClient, { delayResponse: 300 });
-  // mock.onGet("/games").reply(200, { results: mockData.games });
+
+  // استخراج پلتفرم‌ها به صورت یکتا از همه بازی‌ها
+  const platformsSet = new Map<number, platform>();
+
+  mockData.games.forEach((game) => {
+    game.platforms.forEach((p) => {
+      const platform = p.platform;
+      if (!platformsSet.has(platform.id)) {
+        platformsSet.set(platform.id, platform);
+      }
+    });
+  });
+
+  const platforms = Array.from(platformsSet.values());
+
   mock.onGet("/genres").reply(200, { results: mockData.genres });
+
+  mock.onGet("/platforms/lists/parents").reply(200, { results: platforms });
 
   mock.onGet("/games").reply((config) => {
     const genreId = Number(config.params?.genres);
