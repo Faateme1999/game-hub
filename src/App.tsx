@@ -9,8 +9,11 @@ import {
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
+import { useState } from "react";
+import { Genre } from "./hooks/useGenres";
 
 function App() {
+  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
   const showAside = useBreakpointValue({ base: false, lg: true });
   return (
     <>
@@ -20,8 +23,8 @@ function App() {
           lg: `"nav nav" "aside main"`, //1024px
         }}
         templateColumns={{
-          base:'1fr',
-          lg:'200px 1fr',
+          base: "1fr",
+          lg: "200px 1fr",
         }}
       >
         <GridItem area={"nav"}>
@@ -29,11 +32,11 @@ function App() {
         </GridItem>
         {showAside && (
           <GridItem area="aside" paddingX={5}>
-            <GenreList />
+            <GenreList onSelectGenre={(genre) => setSelectedGenre(genre)} />
           </GridItem>
         )}
         <GridItem area="main">
-          <GameGrid />
+          <GameGrid selectedGenre={selectedGenre} />
         </GridItem>
       </Grid>
       {/* <Button colorPalette='blue'>Click me</Button> */}

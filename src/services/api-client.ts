@@ -16,8 +16,23 @@ const apiClient: AxiosInstance = axios.create({
 
 if (import.meta.env.MODE === "development") {
   const mock = new MockAdapter(apiClient, { delayResponse: 300 });
-  mock.onGet("/games").reply(200, { results: mockData.games });
+  // mock.onGet("/games").reply(200, { results: mockData.games });
   mock.onGet("/genres").reply(200, { results: mockData.genres });
+
+  mock.onGet("/games").reply(config => {
+  const genreId = Number(config.params?.genres);
+
+  if (!genreId) {
+    return [200, { results: mockData.games }];
+  }
+
+  const filteredGames = mockData.games.filter(game =>
+    game.genres.some(g => g.id === genreId)
+  );
+
+  return [200, { results: filteredGames }];
+});
+
 }
 
 export default apiClient;
