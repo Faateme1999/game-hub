@@ -19,20 +19,19 @@ if (import.meta.env.MODE === "development") {
   // mock.onGet("/games").reply(200, { results: mockData.games });
   mock.onGet("/genres").reply(200, { results: mockData.genres });
 
-  mock.onGet("/games").reply(config => {
-  const genreId = Number(config.params?.genres);
+  mock.onGet("/games").reply((config) => {
+    const genreId = Number(config.params?.genres);
 
-  if (!genreId) {
-    return [200, { results: mockData.games }];
-  }
+    if (!genreId) {
+      return [200, { results: mockData.games }];
+    }
 
-  const filteredGames = mockData.games.filter(game =>
-    game.genres.some(g => g.id === genreId)
-  );
+    const filteredGames = mockData.games.filter((game) =>
+      game.genres.some((g) => g.id === genreId)
+    );
 
-  return [200, { results: filteredGames }];
-});
-
+    return [200, { results: filteredGames }];
+  });
 }
 
 export default apiClient;
