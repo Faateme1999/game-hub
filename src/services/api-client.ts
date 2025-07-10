@@ -32,13 +32,11 @@ if (import.meta.env.MODE === "development") {
   mock.onGet("/platforms/lists/parents").reply(200, { results: platforms });
 
   // ────────────────────────────
-  //  اندپوینت /games با فیلتر و سورت
+  //  اندپوینت /games با فیلتر، سورت و سرچ
   // ────────────────────────────
   mock.onGet("/games").reply((config) => {
-    // --- استخراج پارامترها
     const genreId = Number(config.params?.genres);
 
-    // platforms ممکن است «عددی»، «رشتهٔ کاما دار» یا خالی باشد
     const rawPlatforms = config.params?.platforms;
     const platformIds =
       rawPlatforms === undefined || rawPlatforms === null || rawPlatforms === ""
@@ -47,8 +45,9 @@ if (import.meta.env.MODE === "development") {
 
     const ordering = config.params?.ordering as string | undefined;
 
-    // --- فیلتر ژانر و پلتفرم
-    let results = mockData.games.slice(); // کپی برای دست‌کاری
+    const searchText = (config.params?.search ?? "").toLowerCase();
+
+    let results = mockData.games.slice();
 
     if (genreId)
       results = results.filter((g) =>
@@ -60,7 +59,11 @@ if (import.meta.env.MODE === "development") {
         g.platforms.some((p) => platformIds.includes(p.platform.id))
       );
 
-    // --- مرتب‌سازی
+    if (searchText)
+      results = results.filter((g) =>
+        g.name.toLowerCase().includes(searchText)
+      );
+
     if (ordering && ordering.trim() !== "") {
       let key = ordering.trim();
       let desc = false;
@@ -70,7 +73,6 @@ if (import.meta.env.MODE === "development") {
         key = key.slice(1);
       }
 
-      // مپ کلیدهای RAWG به فیلدهای موجود در دادهٔ ماک
       type SortKey = "added" | "name" | "released" | "metacritic" | "rating";
       const validKeys: SortKey[] = [
         "added",
@@ -85,19 +87,16 @@ if (import.meta.env.MODE === "development") {
           let aVal: number | string = (a as any)[key];
           let bVal: number | string = (b as any)[key];
 
-          // اگر کلید added در دادهٔ ماک وجود ندارد، از id به‌عنوان جایگزین استفاده می‌کنیم
           if (key === "added") {
             aVal = (a as any)["id"];
             bVal = (b as any)["id"];
           }
 
-          // تبدیل تاریخ ISO به عدد برای released
           if (key === "released") {
             aVal = new Date(aVal as string).getTime();
             bVal = new Date(bVal as string).getTime();
           }
 
-          // مقایسهٔ عددی یا رشته‌ای
           if (typeof aVal === "string" && typeof bVal === "string") {
             return aVal.localeCompare(bVal) * (desc ? -1 : 1);
           } else {
