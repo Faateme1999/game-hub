@@ -10,8 +10,6 @@ import { Platform } from "../hooks/useGames";
 //     }
 // })
 
-
-
 const apiClient: AxiosInstance = axios.create({
   baseURL: "https://api.rawg.io/api",
   params: { key: import.meta.env.VITE_RAWG_KEY ?? "dummy-key" },
@@ -24,8 +22,8 @@ if (import.meta.env.MODE === "development") {
   const platformMap = new Map<number, Platform>();
   mockData.games.forEach((game) =>
     game.platforms.forEach(({ platform }) =>
-      platformMap.set(platform.id, platform),
-    ),
+      platformMap.set(platform.id, platform)
+    )
   );
   const platforms = Array.from(platformMap.values());
 
@@ -45,10 +43,7 @@ if (import.meta.env.MODE === "development") {
     const platformIds =
       rawPlatforms === undefined || rawPlatforms === null || rawPlatforms === ""
         ? []
-        : String(rawPlatforms)
-            .split(",")
-            .map(Number)
-            .filter(Boolean);
+        : String(rawPlatforms).split(",").map(Number).filter(Boolean);
 
     const ordering = config.params?.ordering as string | undefined;
 
@@ -57,12 +52,12 @@ if (import.meta.env.MODE === "development") {
 
     if (genreId)
       results = results.filter((g) =>
-        g.genres.some((gen) => gen.id === genreId),
+        g.genres.some((gen) => gen.id === genreId)
       );
 
     if (platformIds.length)
       results = results.filter((g) =>
-        g.platforms.some((p) => platformIds.includes(p.platform.id)),
+        g.platforms.some((p) => platformIds.includes(p.platform.id))
       );
 
     // --- مرتب‌سازی
