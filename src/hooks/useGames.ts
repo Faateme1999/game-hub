@@ -15,6 +15,7 @@ export interface Game {
   platforms: { platform: Platform }[];
   //   design smell
   metacritic: number;
+  rating_top: number;
 }
 
 const useGames = (gameQuery: GameQuery) =>
